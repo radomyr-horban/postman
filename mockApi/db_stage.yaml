@@ -12,6 +12,11 @@ products:
     sku: 999921312423
     description: Most lettuce varieties are eaten fresh and are commonly served as
       the base of green salads
+  - id: 3
+    name: apple
+    price: 30
+    sku: 999921312423312
+    description: awesome
 orders:
   - id: 1
     name: order1
