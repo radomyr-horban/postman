@@ -27,7 +27,7 @@ jobs:
       - name: Run POSTMAN collection
         continue-on-error: true
         run: |
-          newman run petstore.collection.json -r htmlextra --reporter-htmlextra-export testResults/index.html
+          newman run collections/petstore.collection.json -r htmlextra --reporter-htmlextra-export testResults/index.html
 
       # Upload the contents of Test Results directory to workspace
       - name: Output the run Details
@@ -36,8 +36,7 @@ jobs:
           name: RunReports
           path: testResults
 
-      #!
-      - name: Create a new branch
+      - name: Create a new branch for report
         uses: actions/checkout@v3
         if: always()
         continue-on-error: true
@@ -45,7 +44,6 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      #!
       - name: Deploy report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
