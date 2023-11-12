@@ -12,7 +12,7 @@
 
 2. Download this repo.
 3. Run `npm i` (install node.js dependencies)
-4. Run `npm run tern-on-api`(to run testing server locally )
+4. Run `npm run turn-on-api`(to run testing server locally )
 
 ### Overview of local server testing
 
@@ -65,12 +65,12 @@ Doc for json schema validation, to check output API response (only take a look o
 
 #### To start the testing server locally run:
 
-    npm run tern-on-api
+    npm run turn-on-api
 
-#### To run tests using `newman` run (make sure tha local server is running):
+#### To run tests using `newman` run (make sure the local server is running):
 
     npm run newman:run
 
-#### To run tests and generate an `html` report run (make sure tha local server is running):
+#### To run tests and generate an `html` report run (make sure the local server is running):
 
     npm run newman:report
