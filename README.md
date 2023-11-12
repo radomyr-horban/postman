@@ -60,3 +60,17 @@ Examples with different actions in Postman workspace (only take a look once, no 
 Doc for json schema validation, to check output API response (only take a look once, no need to learn this doc)
 
 - <a href="https://json-schema.org"> json schema docs </a>
+
+## Scripts
+
+#### To start the testing server locally run:
+
+    npm run tern-on-api
+
+#### To run tests using `newman` run (make sure tha local server is running):
+
+    npm run newman:run
+
+#### To run tests and generate an `html` report run (make sure tha local server is running):
+
+    npm run newman:report
