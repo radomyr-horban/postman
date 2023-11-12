@@ -16,22 +16,28 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
-									"}); \r",
+									"});\r",
 									"\r",
-									"pm.test('Schema is valid', function() {\r",
+									"pm.test('Schema is valid', function () {\r",
 									"    const productSchema = JSON.parse(pm.environment.get('product_schema'))\r",
 									"    pm.response.to.have.jsonSchema(productSchema);\r",
 									"})\r",
 									"\r",
 									"// push new product to \"products_list\" \r",
 									"const newProduct = JSON.parse(pm.response.text())\r",
-									"// console.log(newProduct)\r",
-									"let productsListUpdated = JSON.parse(pm.environment.get(\"products_list\"))\r",
-									"// console.log(productsListUpdated)\r",
-									"productsListUpdated.push(newProduct)\r",
-									"pm.environment.set(\"products_list\", JSON.stringify(productsListUpdated));\r",
+									"let productsList = JSON.parse(pm.environment.get(\"products_list\"))\r",
+									"productsList.push(newProduct)\r",
+									"pm.environment.set(\"products_list\", JSON.stringify(productsList));\r",
 									""
 								],
 								"type": "text/javascript"
@@ -78,6 +84,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test('Status code is 200', function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"})\r",
@@ -131,6 +145,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
@@ -150,11 +172,6 @@
 								"exec": [
 									"const productsList = JSON.parse(pm.environment.get(\"products_list\"))\r",
 									"const lastAddedProduct = productsList[productsList.length - 1]\r",
-									"\r",
-									"// console.log(productsList)\r",
-									"// console.log(productsList.length)\r",
-									"// console.log(lastAddedProduct.id)\r",
-									"// console.log(lastAddedProduct)\r",
 									"\r",
 									"pm.environment.set(\"product_id\", lastAddedProduct.id);\r",
 									"\r",
@@ -187,9 +204,18 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test(\"Status code is 404\", function () {\r",
 									"    pm.response.to.have.status(404);\r",
-									"});"
+									"});\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -229,14 +255,24 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
 									"pm.test('Schema is invalid', function () {\r",
 									"    const productSchema = JSON.parse(pm.environment.get('product_schema'))\r",
 									"    pm.request.to.not.have.jsonSchema(productSchema);\r",
 									"})\r",
 									"\r",
-									"// кастиль код бо 400 - не має зберігати новий об'єкт в БД!!!!\r",
 									"// push new product to \"products_list\"\r",
-									"\r",
 									"let productsList = JSON.parse(pm.environment.get(\"products_list\"))\r",
 									"const lastAddedProduct = productsList[productsList.length - 1]\r",
 									"\r",
@@ -267,7 +303,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"name\": {{product_name}},\r\n    \"price\": {{product_price}},\r\n    \"sku\": {{product_sku}},\r\n    \"description\": {{product_description}}\r\n    // \"additional_field\": {{product_additional_field}}\r\n}",
+							"raw": "{\r\n    \"price\": {{product_price}},\r\n    \"sku\": {{product_sku}},\r\n    \"description\": {{product_description}}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -293,7 +329,13 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
 									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
 									"\r",
 									"pm.test('Schema is invalid', function () {\r",
 									"    const productSchema = JSON.parse(pm.environment.get('product_schema'))\r",
@@ -312,9 +354,7 @@
 									"\r",
 									"// push new product to \"products_list\" \r",
 									"const newProduct = JSON.parse(pm.response.text())\r",
-									"// console.log(newProduct)\r",
 									"let productsListUpdated = JSON.parse(pm.environment.get(\"products_list\"))\r",
-									"// console.log(productsListUpdated)\r",
 									"productsListUpdated.push(newProduct)\r",
 									"pm.environment.set(\"products_list\", JSON.stringify(productsListUpdated));"
 								],
@@ -362,6 +402,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test('Status code is 200', function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"})\r",
@@ -426,6 +474,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test(\"The `page` parameter is invalid\", function () {\r",
 									"    const page = pm.environment.get(\"page\");\r",
 									"    pm.expect(page).to.be.lessThan(1)\r",
@@ -486,6 +542,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test(\"The `pageSize` parameter is invalid\", function () {\r",
 									"    const pageSize = pm.environment.get(\"page_size\");\r",
 									"    pm.expect(pageSize).to.be.lessThan(1)\r",
@@ -544,6 +608,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
@@ -636,6 +708,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test(\"Query parameter `sort_order` is invalid\", function () {\r",
 									"    const queryParams = pm.request.url.query.all()\r",
 									"    const param = queryParams.find((item) => item.key === \"sortOrder\")\r",
@@ -701,6 +781,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test('Status code is 400', function () {\r",
 									"    pm.response.to.have.status(400);\r",
 									"})\r",
@@ -753,6 +841,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});"
@@ -805,6 +901,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test(\"Status code is 400\", function () {\r",
 									"    pm.response.to.have.status(400);\r",
 									"});\r",
@@ -821,10 +925,6 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"// const productsList = JSON.parse(pm.environment.get(\"products_list\"))\r",
-									"// const lastAddedProduct = productsList[productsList.length - 1]\r",
-									"// console.log(lastAddedProduct.id)\r",
-									"// pm.environment.set(\"product_id\", lastAddedProduct.id + 1);\r",
 									"pm.environment.set(\"product_id\", 'invalid-id');"
 								],
 								"type": "text/javascript"
@@ -863,6 +963,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test('Schema is invalid', function () {\r",
 									"    const productSchema = JSON.parse(pm.environment.get('product_schema'))\r",
 									"    pm.request.to.not.have.jsonSchema(productSchema);\r",
@@ -889,7 +997,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": {{product_id}},\r\n    // \"name\": {{product_name_updated}},\r\n    \"price\": {{product_price_updated}},\r\n    \"sku\": {{product_sku_updated}},\r\n    \"description\": {{product_description_updated}}\r\n}\r\n\r\n",
+							"raw": "{\r\n    \"id\": {{product_id}},\r\n    \"price\": {{product_price_updated}},\r\n    \"sku\": {{product_sku_updated}},\r\n    \"description\": {{product_description_updated}}\r\n}\r\n\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -916,6 +1024,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"})\r",
@@ -926,7 +1042,129 @@
 									"const productsListUpdated = productsList.filter(product => product.id !== lastAddedProductId)\r",
 									"pm.environment.set(\"products_list\", JSON.stringify(productsListUpdated));\r",
 									"productsList = JSON.parse(pm.environment.get(\"products_list\"))\r",
-									"pm.environment.set(\"product_id\", productsList[productsList.length - 1]);\r",
+									"pm.environment.set(\"product_id\", productsList[productsList.length - 1].id);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const productsList = JSON.parse(pm.environment.get(\"products_list\"))\r",
+									"const lastAddedProduct = productsList[productsList.length - 1]\r",
+									"pm.environment.set(\"product_id\", lastAddedProduct.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/{{product_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"{{product_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove product by ID Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"// remove deleted product from \"products_list\" \r",
+									"let productsList = JSON.parse(pm.environment.get(\"products_list\"))\r",
+									"let lastAddedProductId = pm.environment.get(\"product_id\");\r",
+									"const productsListUpdated = productsList.filter(product => product.id !== lastAddedProductId)\r",
+									"pm.environment.set(\"products_list\", JSON.stringify(productsListUpdated));\r",
+									"productsList = JSON.parse(pm.environment.get(\"products_list\"))\r",
+									"pm.environment.set(\"product_id\", productsList[productsList.length - 1].id);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const productsList = JSON.parse(pm.environment.get(\"products_list\"))\r",
+									"const lastAddedProduct = productsList[productsList.length - 1]\r",
+									"pm.environment.set(\"product_id\", lastAddedProduct.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/{{product_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"{{product_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove product by ID Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"// remove deleted product from \"products_list\" \r",
+									"let productsList = JSON.parse(pm.environment.get(\"products_list\"))\r",
+									"let lastAddedProductId = pm.environment.get(\"product_id\");\r",
+									"const productsListUpdated = productsList.filter(product => product.id !== lastAddedProductId)\r",
+									"pm.environment.set(\"products_list\", JSON.stringify(productsListUpdated));\r",
+									"productsList = JSON.parse(pm.environment.get(\"products_list\"))\r",
+									"pm.environment.set(\"product_id\", productsList[productsList.length - 1].id);\r",
 									"\r",
 									""
 								],
@@ -969,6 +1207,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test(\"Status code is 404\", function () {\r",
 									"    pm.response.to.have.status(404);\r",
 									"});"
@@ -980,10 +1226,10 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"// const productsList = JSON.parse(pm.environment.get(\"products_list\"))\r",
-									"// const lastAddedProduct = productsList[productsList.length - 1]\r",
-									"// console.log(lastAddedProduct.id + 1)\r",
-									"// pm.environment.set(\"product_id\", lastAddedProduct.id);\r",
+									"const productsList = JSON.parse(pm.environment.get(\"products_list\"))\r",
+									"const lastAddedProduct = productsList[productsList.length - 1]\r",
+									"console.log(lastAddedProduct.id + 1)\r",
+									"pm.environment.set(\"product_id\", lastAddedProduct.id + 1);\r",
 									"\r",
 									""
 								],
@@ -1014,6 +1260,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test(\"Response body is empty\", function () {\r",
 									"    pm.expect(pm.response.text()).to.be.empty;\r",
 									"});\r",
@@ -1067,13 +1321,25 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"})\r",
+									"\r",
 									"pm.test(\"Response body is empty\", function () {\r",
 									"    pm.expect(pm.response.text()).to.be.empty;\r",
 									"});\r",
 									"\r",
-									"\r",
 									"// cleanup\r",
-									""
+									"pm.environment.set(\"sort_order\", '');\r",
+									"pm.environment.set(\"sort_key\", '');\r",
+									"pm.environment.set(\"page\", '');\r",
+									"pm.environment.set(\"page_size\", '');\r",
+									"pm.environment.set(\"product_id\", '');\r",
+									"pm.environment.set(\"products_list\", '[]');"
 								],
 								"type": "text/javascript"
 							}

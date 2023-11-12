@@ -1,0 +1,111 @@
+{
+	"id": "29fc0787-3ee8-4b5f-aba5-fabb6bc83b53",
+	"name": "Products",
+	"values": [
+		{
+			"key": "product_schema",
+			"value": "{\n    \"type\": \"object\",\n    \"properties\": {\n        \"name\": {\"type\": \"string\"},\n        \"price\": {\"type\": \"number\"},\n        \"sku\": {\"type\": \"number\"},\n        \"description\": {\"type\": \"string\"},\n        \"id\": {\"type\": \"number\"}\n    },\n    \"required\": [\"name\", \"price\", \"sku\", \"description\", \"id\"],\n    \"additionalProperties\": false\n}",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "products_schema",
+			"value": "{\n    \"type\": \"array\",\n    \"properties\": {\n        \"name\": { \"type\": \"string\" },\n        \"price\": { \"type\": \"number\" },\n        \"sku\": { \"type\": \"number\" },\n        \"description\": { \"type\": \"string\" },\n        \"id\": { \"type\": \"number\" }\n    },\n    \"required\": [\"name\", \"price\", \"sku\", \"description\", \"id\"], \"additionalProperties\": false\n}",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "products_list",
+			"value": "[]",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "product_id",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "product_name",
+			"value": "\"test-name\"",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "product_price",
+			"value": "10",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "product_sku",
+			"value": "123321123",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "page_size",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "page",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "sort_key",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "sort_order",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "product_description",
+			"value": "\"test-description\"",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "product_additional_field",
+			"value": "\"test-additional-field\"",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "product_name_updated",
+			"value": "\"product_name_updated\"",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "product_price_updated",
+			"value": "11",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "product_sku_updated",
+			"value": "100",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "product_description_updated",
+			"value": "\"product_description_updated\"",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-11-12T09:40:49.852Z",
+	"_postman_exported_using": "Postman/10.20.0"
+}
